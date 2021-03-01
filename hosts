@@ -1,0 +1,6 @@
+[webservers]
+ansible2.localnet.com
+ansible3.localnet.com
+
+[dbservers]
+ansible2.localnet.com

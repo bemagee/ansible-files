@@ -1,0 +1,15 @@
+---
+# This playbook contains base plays for all nodes
+
+- name: Install base packages
+  yum: "name={{ item }} state=present"
+  loop: "{{ base_packages }}"
+
+- name: Create users
+  user:
+    name: "{{ item.name }}"
+    state: present
+    groups: "{{ item.groups }}"
+  loop:
+    - {name: 'webadmin1', groups: 'wheel'}
+    - {name: 'webadmin2', groups: 'apache'}
