@@ -1,0 +1,14 @@
+---
+- hosts: ansible2.localnet.com
+  vars:
+    network_connections:
+      - name: enp0s3
+        state: up
+        type: ethernet
+        interface_name: enp0s3
+        autoconnect: true
+        ip:
+          dhcp4: true
+          auto6: false
+  roles:
+    - role: rhel-system-roles.network
