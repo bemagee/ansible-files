@@ -1,0 +1,4 @@
+{% for ip in range(201,221) %}  
+192.168.3.{{ ip }} rhhost{{ "%02d"|format(ip-200) }} rhhost{{ "%02d"|format(ip-200) }}.localnet.com  
+{% endfor %}
+

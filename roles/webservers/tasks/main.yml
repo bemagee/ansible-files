@@ -1,3 +1,13 @@
 ---
-# example of including a playbook
-- include: install_apache.yml
+- name: Install Apache
+  package:
+    name: "{{ apache_pkg }}"
+    state: latest
+- name: Enable Apache on System Boot
+  service:
+    name: "{{ apache_svc }}"
+    enabled: true
+  notify:
+    - start apache
+    - setup firewalld
+    - reload firewalld

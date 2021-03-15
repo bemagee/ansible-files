@@ -1,0 +1,14 @@
+---
+# Example playbook using a jinja2 template
+- hosts: all
+  vars:
+    UserName: "webadmin1"
+  tasks:
+    - name: Simple Template Example
+      template:
+        src: "SimpleTemplate.j2"
+        dest: "/home/{{ UserName }}/newwelcome.txt"
+        owner: "{{ UserName }}"
+        group: "{{ UserName }}"
+        mode: "0644"
+      remote_user: root

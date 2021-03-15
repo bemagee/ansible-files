@@ -1,16 +1,24 @@
 ---
-# This playbook deploys all site configs
+# This playbook deploys all site configs.
+
+- hosts: all
+  tasks:
+    - name: Set distribution variables
+      include_vars: "os_{{ ansible_facts['distribution'] }}.yml"
+#    - debug:
+#        var: apache_pkg
+
 
 - name: apply base configuration to all nodes
   hosts: all
   remote_user: root
 
   roles:
-  - base
+    - base
 
 - name: Configure webservers
   hosts: webservers
   remote_user: root
 
   roles:
-  - webservers
+    - webservers
