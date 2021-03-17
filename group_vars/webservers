@@ -2,3 +2,8 @@
 # Variables for the Webservers Group
 
 httpd_port: 80
+
+webadmins:
+  - bob
+  - ted
+  - sally

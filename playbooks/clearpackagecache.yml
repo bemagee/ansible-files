@@ -1,0 +1,17 @@
+---
+- name: Clear the package cache
+  hosts: all
+  tasks:
+  - name: Clear cache
+    cron:
+      name: "Clear Cache"
+      user: "root"
+      minute: "30"
+      hour: "3"
+      job: "yum clean packages"
+
+  - name: Set mailto variable
+    cronvar:
+      name: "MAILTO"
+      value: "admin@localnet.com"
+      user: "root"

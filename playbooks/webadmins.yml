@@ -1,0 +1,15 @@
+---
+webadmins:
+  - name: user1
+    user: user1
+    comment: "User One"
+    state: present
+    shell: "/bin/bash"
+    groups: "apache,wheel"  
+  
+  - name: webadmin
+    user: webadmin
+    comment: "Web Admin"
+    state: present
+    shell: "/bin/bash"
+    groups: "apache,wheel"  

@@ -1,0 +1,24 @@
+---
+- name: Create new users
+  hosts: webservers
+  tasks:
+  - name: Include web admin user file
+    include_vars:
+      file: webadmins.yml
+  - name: Create web admins
+    user:
+      createhome: true
+      name: "{{ item.user }}"
+      state: "{{ item.state }}"
+      comment: "{{ item.comment }}"
+      shell: "{{ item.shell }}"
+      groups: "{{ item.groups }}"
+      password: "{{ default_password | password_hash('sha512', 'A512') }}"
+      update_password: 'on_create'
+    loop: "{{ webadmins }}"
+    register: userstat
+
+  - name: Force password reset for new users
+    command: chage -d 0 {{ item.item.user }}
+    when: userstat.changed
+    with_items: "{{ userstat.results }}"

@@ -1,0 +1,12 @@
+---
+- name: Create a new user
+  hosts: all
+  tasks:
+  - name: Create bob
+    user:
+      name: bob
+      # the state defines present to create, and absent is to delete the account
+      state: present
+      shell: "/bin/bash"
+      # add the users password by adding a default password in ansible-files/group_vars/all
+      password: "{{ default_password | password_hash('sha512','A512') }}"
